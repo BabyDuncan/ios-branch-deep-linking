@@ -84,12 +84,12 @@ void ForceCategoriesToLoad() {
 @interface Branch() <BranchDeepLinkingControllerCompletionDelegate, FABKit>
 
 
-@property (strong, nonatomic) BNCServerInterface *bServerInterface;
-@property (strong, nonatomic) BNCServerRequestQueue *requestQueue;
-@property (strong, nonatomic) dispatch_semaphore_t processing_sema;
+//@property (strong, nonatomic) BNCServerInterface *bServerInterface;
+//@property (strong, nonatomic) BNCServerRequestQueue *requestQueue;
+//@property (strong, nonatomic) dispatch_semaphore_t processing_sema;
 @property (copy,   nonatomic) callbackWithParams sessionInitWithParamsCallback;
 @property (copy,   nonatomic) callbackWithBranchUniversalObject sessionInitWithBranchUniversalObjectCallback;
-@property (assign, nonatomic) NSInteger networkCount;
+//@property (assign, nonatomic) NSInteger networkCount;
 @property (assign, nonatomic) NSInteger asyncRequestCount;
 @property (assign, nonatomic) BOOL isInitialized;
 @property (assign, nonatomic) BOOL shouldCallSessionInitCallback;
@@ -107,6 +107,9 @@ void ForceCategoriesToLoad() {
 @property (assign, nonatomic) BOOL delayForAppleAds;
 @property (assign, nonatomic) BOOL searchAdsDebugMode;
 @property (strong, nonatomic) NSMutableArray *whiteListedSchemeList;
+
+@property (strong) id<BNCNetworkServiceProtocol> priorityNetworkService;
+@property (strong) id<BNCNetworkServiceProtocol> networkService;
 @end
 
 @implementation Branch
@@ -163,9 +166,9 @@ void ForceCategoriesToLoad() {
 
         ForceCategoriesToLoad();
 
-        _bServerInterface = interface;
-        _bServerInterface.preferenceHelper = preferenceHelper;
-        _requestQueue = queue;
+//        _bServerInterface = interface;
+//        _bServerInterface.preferenceHelper = preferenceHelper;
+//        _requestQueue = queue;
         _linkCache = cache;
         _preferenceHelper = preferenceHelper;
         _branchKey = key;
@@ -173,8 +176,8 @@ void ForceCategoriesToLoad() {
         _contentDiscoveryManager = [[BNCContentDiscoveryManager alloc] init];
         _isInitialized = NO;
         _shouldCallSessionInitCallback = YES;
-        _processing_sema = dispatch_semaphore_create(1);
-        _networkCount = 0;
+//        _processing_sema = dispatch_semaphore_create(1);
+//        _networkCount = 0;
         _asyncRequestCount = 0;
         _deepLinkControllers = [[NSMutableDictionary alloc] init];
         _whiteListedSchemeList = [[NSMutableArray alloc] init];
