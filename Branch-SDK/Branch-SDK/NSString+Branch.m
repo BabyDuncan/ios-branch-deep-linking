@@ -12,15 +12,12 @@
 //
 //--------------------------------------------------------------------------------------------------
 
-
 #import "NSString+Branch.h"
-
 
 void BNCForceNSStringCategoryToLoad() __attribute__((constructor));
 void BNCForceNSStringCategoryToLoad() {
     //  Nothing here, but forces linker to load the category.
 }
-
 
 @implementation NSString (Branch)
 

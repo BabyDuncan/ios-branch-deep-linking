@@ -9,6 +9,10 @@
 
 #import "NSMutableDictionary+Branch.h"
 
+void BNCForceNSMutableDictionaryToLoad() __attribute__((constructor));
+void BNCForceNSMutableDictionaryToLoad() {
+    //  Does nothing.  But will force the linker to include this category.
+}
 
 @implementation NSMutableDictionary (Branch)
 
@@ -29,8 +33,3 @@
 }
 
 @end
-
-
-void ForceNSMutableDictionaryToLoad() {
-    //  Does nothing.  But will force the linker to include this category.
-}

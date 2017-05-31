@@ -6,8 +6,7 @@
 //  Copyright © 2017 Branch Metrics. All rights reserved.
 //
 
-#import "BNCNetworkQueue.h"
+#import "BNCPersistentQueue.h"
 
-@implementation BNCNetworkQueue
-
+@implementation BNCPersistentQueue
 @end

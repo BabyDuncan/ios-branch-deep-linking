@@ -111,6 +111,8 @@
 		4DC127291EDDEC3E00F13AB7 /* BNCNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC127271EDDEC3E00F13AB7 /* BNCNetworkService.m */; };
 		4DC1272C1EDE000C00F13AB7 /* BNCPersistentQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DC1272A1EDE000C00F13AB7 /* BNCPersistentQueue.h */; };
 		4DC1272D1EDE000C00F13AB7 /* BNCPersistentQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC1272B1EDE000C00F13AB7 /* BNCPersistentQueue.m */; };
+		4DC127301EDE2E9500F13AB7 /* BNCServerOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DC1272E1EDE2E9500F13AB7 /* BNCServerOperation.h */; };
+		4DC127311EDE2E9500F13AB7 /* BNCServerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC1272F1EDE2E9500F13AB7 /* BNCServerOperation.m */; };
 		4DDC52621DCC08E700CFB737 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDC52611DCC08E700CFB737 /* iAd.framework */; };
 		54391A151BA249FA0061CB0F /* BranchCSSearchableItemAttributeSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 54391A131BA249FA0061CB0F /* BranchCSSearchableItemAttributeSet.h */; };
 		54391A161BA249FA0061CB0F /* BranchCSSearchableItemAttributeSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 54391A141BA249FA0061CB0F /* BranchCSSearchableItemAttributeSet.m */; };
@@ -250,6 +252,8 @@
 		4DC127271EDDEC3E00F13AB7 /* BNCNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCNetworkService.m; sourceTree = "<group>"; };
 		4DC1272A1EDE000C00F13AB7 /* BNCPersistentQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCPersistentQueue.h; sourceTree = "<group>"; };
 		4DC1272B1EDE000C00F13AB7 /* BNCPersistentQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCPersistentQueue.m; sourceTree = "<group>"; };
+		4DC1272E1EDE2E9500F13AB7 /* BNCServerOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCServerOperation.h; sourceTree = "<group>"; };
+		4DC1272F1EDE2E9500F13AB7 /* BNCServerOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCServerOperation.m; sourceTree = "<group>"; };
 		4DC351441DF0AFB300646A1D /* Simulate-FirstRun.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "Simulate-FirstRun.xcappdata"; sourceTree = "<group>"; };
 		4DDC52611DCC08E700CFB737 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		54391A131BA249FA0061CB0F /* BranchCSSearchableItemAttributeSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchCSSearchableItemAttributeSet.h; sourceTree = "<group>"; };
@@ -578,6 +582,8 @@
 				4DC127231EDDEB3300F13AB7 /* BNCNetworkServiceProtocol.h */,
 				4DC127261EDDEC3E00F13AB7 /* BNCNetworkService.h */,
 				4DC127271EDDEC3E00F13AB7 /* BNCNetworkService.m */,
+				4DC1272E1EDE2E9500F13AB7 /* BNCServerOperation.h */,
+				4DC1272F1EDE2E9500F13AB7 /* BNCServerOperation.m */,
 				4DC1272A1EDE000C00F13AB7 /* BNCPersistentQueue.h */,
 				4DC1272B1EDE000C00F13AB7 /* BNCPersistentQueue.m */,
 			);
@@ -668,6 +674,7 @@
 				466B587C1B17780A00A69EDE /* BNCLinkData.h in Headers */,
 				462B50461B449DF000967B81 /* BranchDeepLinkingController.h in Headers */,
 				E2B9474A1D15D75000F2270D /* BNCCallbacks.h in Headers */,
+				4DC127301EDE2E9500F13AB7 /* BNCServerOperation.h in Headers */,
 				54FF1F951BD20EB50004CE2E /* BranchRegisterViewRequest.h in Headers */,
 				46946B851B26898800627BCC /* BNCServerRequest.h in Headers */,
 				4DB567331E79F46000A8A324 /* BranchShareLink.h in Headers */,
@@ -900,6 +907,7 @@
 				54FF1F8E1BD1D4AE0004CE2E /* BranchUniversalObject.m in Sources */,
 				54FF1F961BD20EB50004CE2E /* BranchRegisterViewRequest.m in Sources */,
 				463F0A321B20A663004235D2 /* BranchSetIdentityRequest.m in Sources */,
+				4DC127311EDE2E9500F13AB7 /* BNCServerOperation.m in Sources */,
 				4DA577181E67B1D600A43BDD /* BNCLog.m in Sources */,
 				4D8EE7A61E1F0A5D00B1F450 /* BNCCommerceEvent.m in Sources */,
 				4DC127291EDDEC3E00F13AB7 /* BNCNetworkService.m in Sources */,

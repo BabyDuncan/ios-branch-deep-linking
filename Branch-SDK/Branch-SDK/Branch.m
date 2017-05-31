@@ -70,14 +70,6 @@ NSString * const BNCShareInitiatedEvent = @"Share Started";
 NSString * const BNCShareCompletedEvent = @"Share Completed";
 
 
-#pragma mark - Load Categories
-
-void ForceCategoriesToLoad();
-void ForceCategoriesToLoad() {
-    ForceNSMutableDictionaryToLoad();
-}
-
-
 #pragma mark - Branch
 
 
@@ -163,8 +155,6 @@ void ForceCategoriesToLoad() {
 
 - (id)initWithInterface:(BNCServerInterface *)interface queue:(BNCServerRequestQueue *)queue cache:(BNCLinkCache *)cache preferenceHelper:(BNCPreferenceHelper *)preferenceHelper key:(NSString *)key {
     if (self = [super init]) {
-
-        ForceCategoriesToLoad();
 
 //        _bServerInterface = interface;
 //        _bServerInterface.preferenceHelper = preferenceHelper;

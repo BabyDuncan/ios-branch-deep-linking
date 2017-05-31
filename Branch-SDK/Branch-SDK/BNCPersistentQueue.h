@@ -23,14 +23,12 @@ typedef NS_ENUM(NSInteger, BNCPersistentQueueItemState) {
 
 #pragma mark - BNCPersistentQueue
 
-@interface BNCPersistentQueueBNCPersistentQueue : NSObject
+@interface BNCPersistentQueue : NSObject
 
-- (instancetype) initWithDataStoreURL:(NSURL*)URL;
+- (instancetype) initWithDataStoreURL:(NSURL*)URL NS_DESIGNATED_INITIALIZER;
 
 - (void) addItem:(id<BNCPersistentQueueItem>)item;
 - (void) removeItemWithIdentifier:(NSString*)uniqueIdentifier;
-
-- (id<BNCPersistentQueueItem>) nextItem;
 - (NSInteger) queueDepth;
 
 @end
