@@ -707,10 +707,18 @@ NSString * const BNCShareCompletedEvent = @"Share Completed";
     }
     
     [self initSessionIfNeededAndNotInProgress];
-    
+
+#if 0
     BranchSetIdentityRequest *req = [[BranchSetIdentityRequest alloc] initWithUserId:userId callback:callback];
     [self.requestQueue enqueue:req];
     [self processNextQueueItem];
+#else
+
+    BNCBranchNetworkServiceOperation *request =
+        [self.networkService branchSetIdentityRequestWithUserId:userId callback:callback];
+    [request start];
+
+#endif
 }
 
 - (void)logout {

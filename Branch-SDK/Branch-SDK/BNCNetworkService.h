@@ -11,15 +11,12 @@
 
 #pragma mark BNCNetworkOperation
 
-@interface BNCNetworkHTTPOperation : NSObject <BNCNetworkHTTPOperationProtocol>
-
-@property (readonly) NSURLSessionTaskState  sessionState;
-@property (readonly) NSMutableURLRequest    *request;
-@property (readonly) NSInteger              HTTPStatusCode;
-@property (readonly) NSError                *error;
-@property (readonly) NSDate                 *dateStart;
-@property (readonly) NSDate                 *dateFinish;
-@property (readonly) id<NSObject>           responseData;
+@interface BNCNetworkOperationProtocol : NSObject <BNCNetworkOperationProtocol>
+@property (readonly) NSURL          *URL;
+@property (readonly) NSInteger      HTTPStatusCode;
+@property (readonly) NSError        *error;
+@property (readonly) id<NSObject>   responseData;
+@property (assign)   NSTimeInterval timeoutInterval;
 
 - (void) start;
 - (void) cancel;
@@ -28,16 +25,17 @@
 #pragma mark - BNCNetworkService
 
 @interface BNCNetworkService : NSObject <BNCNetworkServiceProtocol>
-+ (BNCNetworkService*) sharedService;
++ (id<BNCNetworkServiceProtocol>) new;
 
-- (BNCNetworkHTTPOperation*) getOperationWithURL:(NSURL *)URL
-                                      completion:(void (^)(BNCNetworkHTTPOperation*operation))completion;
-
-- (BNCNetworkHTTPOperation*) postOperationWithURL:(NSURL *)URL
-                                      contentType:(NSString*)contentType
-                                             data:(NSData *)data
-                                       completion:(void (^)(BNCNetworkHTTPOperation*operation))completion;
-
-@property (assign) NSInteger maximumConcurrentOperations;
 @property (assign) NSTimeInterval defaultTimeout;
+@property (assign) NSInteger maximumConcurrentOperations;
+@property (assign, getter=operationsAreSuspended) BOOL suspendOperations;
+
+- (id<BNCNetworkOperationProtocol>) getOperationWithURL:(NSURL *)URL
+           completion:(void (^)(id<BNCNetworkOperationProtocol>operation))completion;
+
+- (id<BNCNetworkOperationProtocol>) postOperationWithURL:(NSURL *)URL
+          contentType:(NSString*)contentType
+                 data:(NSData *)data
+           completion:(void (^)(id<BNCNetworkOperationProtocol>operation))completion;
 @end

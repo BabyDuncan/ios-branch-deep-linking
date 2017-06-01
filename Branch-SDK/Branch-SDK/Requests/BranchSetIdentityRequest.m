@@ -11,6 +11,8 @@
 #import "BNCEncodingUtils.h"
 #import "BranchConstants.h"
 
+#if 0
+
 @interface BranchSetIdentityRequest ()
 
 @property (strong, nonatomic) NSString *userId;
@@ -89,5 +91,56 @@
     
     [coder encodeObject:self.userId forKey:@"userId"];
 }
+
+#else
+
+@implementation BNCBranchNetworkService (BranchSetIdentityRequest)
+
+- (BNCBranchNetworkServiceOperation*) branchSetIdentityRequestWithUserId:(NSString *)userId
+                                                                callback:(callbackWithParams)callback {
+    BNCPreferenceHelper *preferenceHelper = [BNCPreferenceHelper preferenceHelper];
+    NSDictionary *params = @{
+        BRANCH_REQUEST_KEY_DEVELOPER_IDENTITY:userId,
+        BRANCH_REQUEST_KEY_DEVICE_FINGERPRINT_ID: preferenceHelper.deviceFingerprintID,
+        BRANCH_REQUEST_KEY_SESSION_ID: preferenceHelper.sessionID,
+        BRANCH_REQUEST_KEY_BRANCH_IDENTITY: preferenceHelper.identityID
+    };
+
+    return [self postOperationWithAPI:BRANCH_REQUEST_ENDPOINT_SET_IDENTITY
+        data:params
+        completion:^(BNCBranchNetworkServiceOperation *operation) {
+
+            if (operation.error) {
+                if (callback && self.shouldCallCallback) {
+                    callback([NSDictionary new], operation.error);
+                }
+                
+                self.shouldCallCallback = NO; // don't call the callback next time around
+                return;
+            }
+
+            NSDictionary *data = operation.responseDictionary;
+
+            preferenceHelper.identityID = data[BRANCH_RESPONSE_KEY_BRANCH_IDENTITY];
+            preferenceHelper.userUrl = data[BRANCH_RESPONSE_KEY_USER_URL];
+            preferenceHelper.userIdentity = userId;
+            if (data[BRANCH_RESPONSE_KEY_SESSION_ID]) {
+                preferenceHelper.sessionID = data[BRANCH_RESPONSE_KEY_SESSION_ID];
+            }
+          
+            if (data[BRANCH_RESPONSE_KEY_INSTALL_PARAMS]) {
+                preferenceHelper.installParams = data[BRANCH_RESPONSE_KEY_INSTALL_PARAMS];
+            }
+            
+            if (callback && self.shouldCallCallback) {
+                NSString *storedParams = preferenceHelper.installParams;
+                NSDictionary *installParams = [BNCEncodingUtils decodeJsonStringToDictionary:storedParams];
+                callback(installParams, nil);
+            }
+
+    }];
+}
+
+#endif
 
 @end

@@ -13,14 +13,19 @@
 #import "BranchConstants.h"
 #import "BNCDeviceInfo.h"
 #import "NSMutableDictionary+Branch.h"
+#import "BNCPreferenceHelper.h"
 
 typedef void (^NSURLSessionCompletionHandler) (NSData *data, NSURLResponse *response, NSError *error);
 typedef void (^NSURLConnectionCompletionHandler) (NSURLResponse *response, NSData *responseData, NSError *error);
 
-@implementation BNCServerInterface
+@interface BNCServerInterface ()
+@property (strong) BNCPreferenceHelper *preferenceHelper;
+@property (strong) NSDate *startTime;
+@property (strong) NSString *requestEndpoint;
+@end
 
-NSDate *startTime;
-NSString *requestEndpoint;
+
+@implementation BNCServerInterface
 
 #pragma mark - GET methods
 
@@ -65,7 +70,7 @@ NSString *requestEndpoint;
     NSURLRequest *request = [self preparePostRequest:extendedParams url:url key:key retryNumber:retryNumber log:log];
     
     // Instrumentation metrics
-    requestEndpoint = [self.preferenceHelper getEndpointFromURL:url];
+    self.requestEndpoint = [self.preferenceHelper getEndpointFromURL:url];
 
     [self genericHTTPRequest:request retryNumber:retryNumber log:log callback:callback retryHandler:^NSURLRequest *(NSInteger lastRetryNumber) {
         return [self preparePostRequest:extendedParams url:url key:key retryNumber:++lastRetryNumber log:log];
@@ -150,7 +155,7 @@ NSString *requestEndpoint;
     };
     
     // start the reqeust timer here. This will account for retries.
-    startTime = [NSDate date];
+    self.startTime = [NSDate date];
 
     // NSURLSession is available in iOS 7 and above
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0) {
@@ -285,9 +290,9 @@ NSString *requestEndpoint;
 
 - (void) collectInstrumentationMetrics {
     // multiplying by negative because startTime happened in the past
-    NSTimeInterval elapsedTime = [startTime timeIntervalSinceNow] * -1000.0;
+    NSTimeInterval elapsedTime = [self.startTime timeIntervalSinceNow] * -1000.0;
     NSString *lastRoundTripTime = [[NSNumber numberWithDouble:floor(elapsedTime)] stringValue];
-    NSString * brttKey = [NSString stringWithFormat:@"%@-brtt", requestEndpoint];
+    NSString * brttKey = [NSString stringWithFormat:@"%@-brtt", self.requestEndpoint];
     [self.preferenceHelper clearInstrumentationDictionary];
     [self.preferenceHelper addInstrumentationDictionaryKey:brttKey value:lastRoundTripTime];
 }

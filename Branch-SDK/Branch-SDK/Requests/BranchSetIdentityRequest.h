@@ -7,6 +7,8 @@
 //
 
 #import "Branch.h"
+
+#if 0
 #import "BNCServerRequest.h"
 
 @interface BranchSetIdentityRequest : BNCServerRequest
@@ -14,3 +16,15 @@
 - (id)initWithUserId:(NSString *)userId callback:(callbackWithParams)callback;
 
 @end
+
+#else
+#import "BNCBranchNetworkService.h"
+
+@interface BNCBranchNetworkService (BranchSetIdentityRequest)
+
+- (BNCBranchNetworkServiceOperation*) branchSetIdentityRequestWithUserId:(NSString *)userId
+                                                                callback:(callbackWithParams)callback;
+
+@end
+
+#endif
