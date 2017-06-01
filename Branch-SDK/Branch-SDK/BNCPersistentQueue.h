@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, BNCPersistentQueueItemState) {
 
 @protocol BNCPersistentQueueItem <NSObject, NSCoding>
 - (NSString*) uniqueIdentifier;
-@property (assign) BNCPersistentQueueItemState queueItemState;
+@property (readonly) BNCPersistentQueueItemState queueItemState;
 @end
 
 #pragma mark - BNCPersistentQueue

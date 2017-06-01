@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BNCNetworkServiceProtocol.h"
 #import "BNCPersistentQueue.h"
+#import "BNCServerRequest.h"
 
 #pragma mark BNCBranchNetworkServiceOperation
 
@@ -36,10 +37,15 @@
                              data:(NSDictionary*)data
                        completion:(void (^)(BNCBranchNetworkServiceOperation*operation))completion;
 
-- (BNCBranchNetworkServiceOperation*) postOperationWithAPI:(NSString *)API
+- (BNCBranchNetworkServiceOperation*) postOperationWithURL:(NSString *)API
                               data:(id<NSObject>)dictionaryOrArray
                         completion:(void (^)(BNCBranchNetworkServiceOperation*operation))completion;
 
 @property (assign) NSInteger maximumConcurrentOperations;
 @property (assign) NSTimeInterval defaultTimeoutInterval;
+
+// Glue code:
+
+- (void) startRequest:(BNCServerRequest*)request;
+
 @end

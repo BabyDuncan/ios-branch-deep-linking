@@ -119,4 +119,10 @@
     return YES;
 }
 
+#pragma mark - Glue Code
+
+- (void) startRequest:(BNCServerRequest *)request {
+
+}
+
 @end

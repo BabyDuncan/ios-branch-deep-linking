@@ -712,6 +712,16 @@ NSString * const BNCShareCompletedEvent = @"Share Completed";
     BranchSetIdentityRequest *req = [[BranchSetIdentityRequest alloc] initWithUserId:userId callback:callback];
     [self.requestQueue enqueue:req];
     [self processNextQueueItem];
+
+#elif 1
+
+    BranchSetIdentityRequest *req = [[BranchSetIdentityRequest alloc] initWithUserId:userId callback:callback];
+    [self.requestQueue enqueue:req];
+    [self processNextQueueItem];
+
+    [self.networkService startRequest:req];
+
+
 #else
 
     BNCBranchNetworkServiceOperation *request =
